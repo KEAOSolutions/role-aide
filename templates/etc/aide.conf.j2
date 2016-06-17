@@ -1,0 +1,25 @@
+{{ ansible_managed | comment }}
+
+{% if aide_config_definitions %}
+{% for item in aide_config_definitions %}
+@@define {{ item.name }} {{ item.desc }}
+{% endfor %}
+{% endif %}
+
+verbose={{ aide_config_verbosity }}
+
+database={{ aide_config_database }}
+database_out={{ aide_config_database_out }}
+gzip_dbout={{ aide_config_gzip_out }}
+
+report_url={{ aide_config_report_url }}
+
+
+{% for item in aide_config_rules %}
+{{ item.name }} = {{ item.desc }}
+{% endfor %}
+
+
+{% for item in aide_config_content %}
+{{ item.path }} {{ item.desc }}
+{% endfor %}
