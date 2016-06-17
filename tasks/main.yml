@@ -9,3 +9,15 @@
     validate_certs='{{ aide_packages_validate_certs }}'
   with_flattened:
     - '{{ aide_packages_list }}'
+
+
+
+- name: deploy configuration file
+  template:
+    mode='{{ aide_config_file_mode }}'
+    owner='{{ aide_config_file_owner }}'
+    group='{{ aide_config_file_group }}'
+    dest='{{ aide_config_file_dest }}'
+    src='{{ aide_config_file_src }}'
+    backup='{{ aide_config_file_backup }}'
+    validate='{{ aide_config_file_validate }}'
