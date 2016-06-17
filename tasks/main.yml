@@ -1,0 +1,11 @@
+---
+
+- name: ensure packages are installed
+  yum:
+    name='{{ item }}'
+    state='{{ aide_packages_state }}'
+    disable_gpg_check='{{ aide_packages_disable_gpg_check }}'
+    update_cache='{{ aide_packages_update_cache }}'
+    validate_certs='{{ aide_packages_validate_certs }}'
+  with_flattened:
+    - '{{ aide_packages_list }}'

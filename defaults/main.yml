@@ -1,0 +1,6 @@
+## ensure packages are installed
+aide_packages_list: [ 'aide' ]
+aide_packages_state: 'present'
+aide_packages_disable_gpg_check: 'no'
+aide_packages_update_cache: 'yes'
+aide_packages_validate_certs: 'yes'
