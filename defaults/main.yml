@@ -18,8 +18,8 @@ aide_config_file_validate: 'aide -c %s -D'
 
 aide_config_verbosity: '5'
 
-aide_config_database: 'file:@@{DBDIR}/aide.db.gz'
-aide_config_database_out: 'file:@@{DBDIR}/aide.db.new.gz'
+aide_config_database: 'file:{{ aide_config_db_path }}'
+aide_config_database_out: 'file:{{ aide_config_db_new_path }}'
 aide_config_report_url: 'file:@@{LOGDIR}/aide.log'
 aide_config_gzip_out: 'yes'
 
@@ -38,9 +38,22 @@ aide_config_dir_db_mode: '0700'
 aide_config_dir_db_state: 'directory'
 
 
+aide_config_db_path: '{{ aide_config_dir_db_path }}/aide.db.gz'
+aide_config_db_owner: 'root'
+aide_config_db_group: 'root'
+aide_config_db_mode: '0600'
+aide_config_db_state: 'file'
+
+
+aide_config_db_new_path: '{{ aide_config_dir_db_path }}/aide.db.new.gz'
+aide_config_db_new_owner: 'root'
+aide_config_db_new_group: 'root'
+aide_config_db_new_mode: '0600'
+aide_config_db_new_state: 'absent'
+
+
 aide_config_definitions:
   - { name: 'LOGDIR',  desc: '{{ aide_config_dir_log_path }}' }
-  - { name: 'DBDIR',   desc: '{{ aide_config_dir_db_path }}' }
 
 
 aide_config_rules:
@@ -134,3 +147,9 @@ aide_config_content:
   - { path: '/etc/vsftpd.ftpusers',      desc: 'LSPP' }
   - { path: '/etc/vsftpd',               desc: 'LSPP' }
   - { path: '/etc/issue',                desc: 'LSPP' }
+
+
+## ensure db file is available:
+aide_run_init_db:
+  - 'aide --init'
+  - 'mv -v {{ aide_config_db_new_path }} {{ aide_config_db_path }}'

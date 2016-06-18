@@ -39,3 +39,20 @@
     group='{{ aide_config_dir_db_group }}'
     mode='{{ aide_config_dir_db_mode }}'
     state='{{ aide_config_dir_db_state }}'
+
+
+- name: ensure db file is available
+  command: '{{ item }}'
+  with_items: '{{ aide_run_init_db }}'
+  args:
+    chdir: '{{ aide_config_dir_db_path }}'
+    creates: '{{ aide_config_db_path  }}'
+
+
+- name: ensure db is available and secure
+  file:
+    dest='{{ aide_config_db_path }}'
+    owner='{{ aide_config_db_owner }}'
+    group='{{ aide_config_db_group }}'
+    mode='{{ aide_config_db_mode }}'
+    state='{{ aide_config_db_state }}'
