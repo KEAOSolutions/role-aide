@@ -24,9 +24,23 @@ aide_config_report_url: 'file:@@{LOGDIR}/aide.log'
 aide_config_gzip_out: 'yes'
 
 
+aide_config_dir_log_path: '/var/log/aide'
+aide_config_dir_log_owner: 'root'
+aide_config_dir_log_group: 'root'
+aide_config_dir_log_mode: '0700'
+aide_config_dir_log_state: 'directory'
+
+
+aide_config_dir_db_path: '/var/lib/aide'
+aide_config_dir_db_owner: 'root'
+aide_config_dir_db_group: 'root'
+aide_config_dir_db_mode: '0700'
+aide_config_dir_db_state: 'directory'
+
+
 aide_config_definitions:
-  - { name: 'DBDIR',   desc: '/var/lib/aide' }
-  - { name: 'LOGDIR',  desc: '/var/log/aide' }
+  - { name: 'LOGDIR',  desc: '{{ aide_config_dir_log_path }}' }
+  - { name: 'DBDIR',   desc: '{{ aide_config_dir_db_path }}' }
 
 
 aide_config_rules:

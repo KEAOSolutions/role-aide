@@ -21,3 +21,21 @@
     src='{{ aide_config_file_src }}'
     backup='{{ aide_config_file_backup }}'
     validate='{{ aide_config_file_validate }}'
+
+
+- name: ensure log directory is available
+  file:
+    dest='{{ aide_config_dir_log_path }}'
+    owner='{{ aide_config_dir_log_owner }}'
+    group='{{ aide_config_dir_log_group }}'
+    mode='{{ aide_config_dir_log_mode }}'
+    state='{{ aide_config_dir_log_state }}'
+
+
+- name: ensure db directory is available
+  file:
+    dest='{{ aide_config_dir_db_path }}'
+    owner='{{ aide_config_dir_db_owner }}'
+    group='{{ aide_config_dir_db_group }}'
+    mode='{{ aide_config_dir_db_mode }}'
+    state='{{ aide_config_dir_db_state }}'
