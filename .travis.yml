@@ -2,14 +2,18 @@
 sudo: required
 services: [ 'docker' ]
 
+env:
+  - ROLE_NAME='centisible.aide'
+
 before_install:
-- sudo docker pull centos:7
+  - sudo docker pull centos:7
 
 script:
-- sudo docker run --detach --privileged --volume="${PWD}":/etc/ansible/roles/role:ro --name "ansible" centos:7 /usr/lib/systemd/systemd
-# Check syntax of ansible playbook
+- sudo docker run --detach --privileged --name "ansible" centos:7 /usr/lib/systemd/systemd
 - sudo docker exec "ansible" yum install -y epel-release
 - sudo docker exec "ansible" yum install -y ansible
+- sudo docker exec "ansible" ansible-galaxy install "${ROLE_NAME}"
+- sudo docker exec "ansible" ln -s /etc/ansible/roles/"${ROLE_NAME}" /etc/ansible/roles/role
 - sudo docker exec "ansible" ansible-playbook /etc/ansible/roles/role/tests/test.yml --syntax-check
 - sudo docker exec "ansible" ansible-playbook /etc/ansible/roles/role/tests/test.yml
 - sudo docker stop "ansible"
