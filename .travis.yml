@@ -13,3 +13,6 @@ script:
 - sudo docker exec "ansible" ansible-playbook /etc/ansible/roles/role/tests/test.yml --syntax-check
 - sudo docker exec "ansible" ansible-playbook /etc/ansible/roles/role/tests/test.yml
 - sudo docker stop "ansible"
+
+notifications:
+    webhooks: https://galaxy.ansible.com/api/v1/notifications/

@@ -9,6 +9,10 @@ galaxy_info:
     - 'security'
     - 'os'
     - 'aide'
+  platforms:
+    - name: 'EL'
+      varsions:
+        - 7
 
 
 dependencies: []
