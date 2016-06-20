@@ -15,4 +15,5 @@ galaxy_info:
         - 7
 
 
-dependencies: []
+dependencies:
+  - 'centisible.crond'
