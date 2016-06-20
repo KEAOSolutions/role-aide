@@ -56,3 +56,19 @@
     group='{{ aide_config_db_group }}'
     mode='{{ aide_config_db_mode }}'
     state='{{ aide_config_db_state }}'
+
+
+- name: ensure cron task is available
+  cron:
+     name='{{ aide_cron_name }}'
+     job='{{ aide_cron_job }}'
+     user='{{ aide_cron_user }}'
+     minute='{{ aide_cron_minute }}'
+     hour='{{ aide_cron_hour }}'
+     day='{{ aide_cron_day }}'
+     weekday='{{ aide_cron_weekday }}'
+     month='{{ aide_cron_month }}'
+     cron_file='{{ aide_cron_cron_file }}'
+     backup='{{ aide_cron_backup }}'
+     state='{{ aide_cron_state }}'
+     special_time='{{ aide_cron_special_time }}'

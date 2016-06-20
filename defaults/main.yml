@@ -153,3 +153,18 @@ aide_config_content:
 aide_run_init_db:
   - 'aide --init'
   - 'mv -v {{ aide_config_db_new_path }} {{ aide_config_db_path }}'
+
+
+## ensure cron task is available:
+aide_cron_name: 'aide-audit'
+aide_cron_job: 'aide --check'
+aide_cron_user: 'root'
+aide_cron_minute: '*'
+aide_cron_hour: '*'
+aide_cron_day: '*'
+aide_cron_weekday: '*'
+aide_cron_month: '*'
+aide_cron_cron_file: 'aide-audit'
+aide_cron_backup: 'yes'
+aide_cron_state: 'present'
+aide_cron_special_time: 'daily'
